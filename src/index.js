@@ -68,37 +68,57 @@ const Game = () => {
   const [history, setHistory] = useState([{ squares: Array(9).fill(null) }])
   const [xIsNext, setXIsNext] = useState(true)
   const [isGameOver, setIsGameOver] = useState(false)
+  const [currentMove, setCurrentMove] = useState(0)
 
-  const currentHistory = history[history.length - 1]
+  const currentHistory = history.slice(0, currentMove + 1)
+  const currentSquares = currentHistory[currentMove]
 
   const handleClick = (i) => {
-    const newSquares = currentHistory.squares.slice()
+    const newSquares = currentSquares.squares.slice()
     if (!isGameOver && !newSquares[i]) {
       newSquares[i] = xIsNext ? 'X' : 'O'
-      setHistory(history.concat([{
+      setHistory(currentHistory.concat([{
         squares: newSquares
       }]))
       setXIsNext(!xIsNext)
+      setCurrentMove(currentHistory.length)
     }
   }
 
-  const winner = calculateWinner(currentHistory.squares)
+  const winner = calculateWinner(currentSquares.squares)
   let status
   if (winner) {
     if (!isGameOver) { setIsGameOver(true) }
     status = `Winner: ${winner}`
   } else {
+    if (isGameOver) { setIsGameOver(false) }
     status = `Next player: ${xIsNext ? 'X' : 'O'}`
   }
+
+  const jumpTo = (move) => {
+    setCurrentMove(move)
+    setXIsNext((move % 2) === 0)
+  }
+
+  const moves = currentHistory.map((step, move) => {
+    const desc = move
+      ? 'Go to move #' + move
+      : 'Go to game start'
+    return (
+      <li key={move}>
+        <button onClick={() => jumpTo(move)}>{desc}</button>
+      </li>
+    )
+  })
 
   return (
     <div className="game">
       <div className="game-board">
-        <Board {...{ squares: currentHistory.squares, handleClick }} />
+        <Board {...{ squares: currentSquares.squares, handleClick }} />
       </div>
       <div className="game-info">
         <div>{status}</div>
-        <ol>{/* TODO */}</ol>
+        <ol>{moves}</ol>
       </div>
     </div>
   )
