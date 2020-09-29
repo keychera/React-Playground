@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "2bfc33efb103549ca5184ea2f22c7175",
+    "revision": "b8b5ae41d3351ba5b7d3320131790dff",
     "url": "/react-playground/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-playground/static/css/2.220ccb42.chunk.css"
   },
   {
-    "revision": "91aa3cfd9e0f88211176",
+    "revision": "2ea2a5489e10233ad0f9",
     "url": "/react-playground/static/css/main.c2329a2b.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-playground/static/js/2.e0a38586.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "91aa3cfd9e0f88211176",
-    "url": "/react-playground/static/js/main.6e95f678.chunk.js"
+    "revision": "2ea2a5489e10233ad0f9",
+    "url": "/react-playground/static/js/main.36ffbd7c.chunk.js"
   },
   {
     "revision": "55e1e2246b7404aa01b8",
