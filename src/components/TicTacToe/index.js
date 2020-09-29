@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Helmet } from 'react-helmet';
 import './style.css'
 
 const calculateWinner = (squares) => {
@@ -112,6 +113,9 @@ const TicTacToe = () => {
 
   return (
     <div className="game">
+      <Helmet>
+        <title>Tic Tac Toe</title>
+      </Helmet>
       <div className="game-board">
         <Board {...{ squares: currentSquares.squares, handleClick }} />
       </div>

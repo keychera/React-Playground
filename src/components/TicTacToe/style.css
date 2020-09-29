@@ -42,7 +42,13 @@ ol, ul {
 
 .game {
   display: flex;
+  height: 50vh;
   flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  background-color: #EEE;
+  padding: 20pt;
+  border-radius: 20pt;
 }
 
 .game-info {
