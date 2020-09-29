@@ -12,7 +12,7 @@ export default function App() {
       <Helmet>
         <title>playground</title>
       </Helmet>
-      <Router>
+      <Router basename={process.env.PUBLIC_URL}>
         <Routes />
       </Router>
     </div>
