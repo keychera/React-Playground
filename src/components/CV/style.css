@@ -1,0 +1,6 @@
+.container {
+  height: 90vh;
+  width: 96vw;
+  background-color: whitesmoke;
+  overflow: hidden;
+}
