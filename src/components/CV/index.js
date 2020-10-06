@@ -82,7 +82,7 @@ const content = {
         {
           type: "project",
           title: "Opengl animation",
-          time: "August 2020 - ongoing",
+          time: "August - September 2020 ",
           desc: "Combining the interest in art and programming, Kevin started learning Opengl to understand what's going on behind the scene of graphical processing. So far, Kevin managed to make one animated piece that he is proud of.",
           tools: [
             "c++",
@@ -93,7 +93,7 @@ const content = {
         {
           type: "project",
           title: "2D/3D art with Blender",
-          time: "September 2020 - ongoing",
+          time: "September 2020",
           desc: "Having the vision to build a programmable visual, Kevin pursued learning Blender. Kevin has finished several tutorials that managed to make impressive visuals with a minimal amount of effort.",
           tools: [
             "blender"
@@ -109,7 +109,7 @@ const content = {
         "Continuing the React-native classes, Kevin learned React to make this CV and published it on GitHub pages. This CV can also be accessed on:",
         (<Link href='https://keychera.github.io/react-playground/cv'>keychera.github.io/react-playground/cv</Link>)
       ],
-      time: "September 2020 - ongoing",
+      time: "September - October 2020",
       tools: [
         "react", "javascript"
       ]
@@ -138,13 +138,13 @@ const content = {
     {
       title: "Head of Gamedev community",
       place: "Inkubator IT HMIF",
-      time: "2018",
+      time: "Feb 2018 - Feb 2019",
       desc: "Kevin leads a community that dabbles in the art and tech of game development."
     },
     {
       title: "Marketing Staff",
       place: "Inkubator IT HMIF",
-      time: "August 2016-2019",
+      time: "August 2016 - Feb 2019",
       desc: "Kevin works in the marketing department of Inkubator IT HMIF. In there, Kevin did activities such as advertising Inkubator IT at events, other student organizations, and clients while learning about communication and presentational skill."
     }
   ],
