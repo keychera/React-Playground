@@ -1,11 +1,13 @@
 import React from 'react'
 import { Helmet } from 'react-helmet'
-import { Row, Col, Avatar, Typography, Card, Tag } from 'antd'
+import { Row, Col, Avatar, Typography, Card, Tag, Tabs } from 'antd'
+import { useMediaQuery } from 'react-responsive'
 import ProfilePic from '../../assets/me.png'
 import './style.css'
 
-const { Text } = Typography;
-const { Meta } = Card;
+const { Text } = Typography
+const { Meta } = Card
+const { TabPane } = Tabs
 
 const Link = ({ href, children }) => (
   <a href={href} target="_blank" rel="noopener noreferrer">{children}</a>
@@ -181,8 +183,6 @@ const toolInfo = {
   "figma": { color: 'lime' },
 }
 
-
-
 const EducationCard = (props) => {
   const { name, type, time, extra } = props
   return (
@@ -219,7 +219,7 @@ const ExperienceCard = (props) => {
   )
 }
 
-const Profile = () => {
+const Profile = ({ isBigScreen, isTablet }) => {
   return (
     <>
       <Card
@@ -231,19 +231,52 @@ const Profile = () => {
             </Text>
           )
         })}
+        cover={
+          !isBigScreen
+            ? (
+              <div style={{ textAlign: 'center', paddingTop: 24 }}>
+                <Avatar src={ProfilePic} size={128} style={{ display: 'inline-block' }} />
+              </div>
+            )
+            : (<></>)
+        }
       >
-        <Meta
-          avatar={<Avatar src={ProfilePic} size={128} />}
-          title={content.name}
-          description={content.about}
-        />
+        {isBigScreen
+          ? (
+            <Meta
+              avatar={<Avatar src={ProfilePic} size={128} />}
+              title={content.name}
+              description={content.about}
+            />
+          )
+          : (
+            <>
+              <h4>{content.name}</h4>
+              <p style={{ color: '#00000073' }}>{content.about}</p>
+            </>
+          )
+        }
       </Card>
+    </>
+  )
+}
+
+const Educations = () => {
+  return (
+    <>
       <CenterTitle>Education 📚</CenterTitle>
       <Card size='small'>
         {content.education.map((v, i) => (
           <EducationCard {...v} key={i} />
         ))}
       </Card>
+    </>
+  )
+}
+
+const Experiences = () => {
+  return (
+    <>
       <CenterTitle>Experience 🥼</CenterTitle>
       <Card size='small'>
         {content.experience.map((v, i) => (
@@ -369,22 +402,65 @@ const Skills = () => {
 }
 
 const CV = () => {
+  const isBigScreen = useMediaQuery({ minWidth: 1500 })
+  const isDesktop = useMediaQuery({ minWidth: 1224 })
+  const isTablet = useMediaQuery({ minWidth: 900, maxWidth: 1224 })
+
   return (
     <div className='container'>
       <Helmet>
         <title>keychera's CV</title>
       </Helmet>
-      <Row align='center'>
-        <Col span={6}>
-          <Profile />
-        </Col>
-        <Col span={12}>
-          <Projects />
-        </Col>
-        <Col span={6}>
-          <Skills />
-        </Col>
-      </Row>
+      {
+        isDesktop
+          ? (
+            <Row align='center'>
+              <Col span={6}>
+                <Profile {...{ isBigScreen }} />
+                <Educations />
+                <Experiences />
+              </Col>
+              <Col span={12}>
+                <Projects />
+              </Col>
+              <Col span={6}>
+                <Skills />
+              </Col>
+            </Row>
+          )
+          : isTablet
+            ? (
+              <Row align='center'>
+                <Col span={6}>
+                  <Profile />
+                  <Educations />
+                  <Educations />
+                </Col>
+                <Col span={18}>
+                  <Projects />
+                  <Skills />
+                </Col>
+              </Row>
+            )
+            : (
+              <>
+                <Profile />
+                <Tabs defaultActiveKey="3" type='card' centered>
+                  <TabPane tab="📚" key="1">
+                    <Educations />
+                    <Experiences />
+                  </TabPane>
+                  <TabPane tab="💻" key="3">
+                    <Projects />
+                  </TabPane>
+                  <TabPane tab="🔧" key="4">
+                    <Skills />
+                  </TabPane>
+                </Tabs>
+              </>
+            )
+      }
+
 
     </div>
   )
