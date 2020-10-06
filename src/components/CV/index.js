@@ -341,26 +341,36 @@ const ProjectCard = (props) => {
   }
 }
 
-const Projects = () => {
+const Projects = ({ isMobile }) => {
   const row1 = content.projects.slice(0, 3)
   const row2 = content.projects.slice(3)
   return (
     <>
       <CenterTitle>Projects 💻</CenterTitle>
-      <Card size='small'>
-        <Row>
-          <Col span={12}>
-            {row1.map((v, i) => (
-              <ProjectCard {...v} key={i} />
-            ))}
-          </Col>
-          <Col span={12}>
-            {row2.map((v, i) => (
-              <ProjectCard {...v} key={i} />
-            ))}
-          </Col>
-        </Row>
-      </Card>
+      {
+        isMobile
+          ? content.projects.map((v, i) => (
+            <ProjectCard {...v} key={i} />
+          ))
+          : (
+            <Card size='small'>
+              <Row>
+                <Col span={12}>
+                  {row1.map((v, i) => (
+                    <ProjectCard {...v} key={i} />
+                  ))}
+                </Col>
+                <Col span={12}>
+                  {row2.map((v, i) => (
+                    <ProjectCard {...v} key={i} />
+                  ))}
+                </Col>
+              </Row>
+            </Card>
+          )
+      }
+
+
     </>
   )
 }
@@ -405,6 +415,7 @@ const CV = () => {
   const isBigScreen = useMediaQuery({ minWidth: 1500 })
   const isDesktop = useMediaQuery({ minWidth: 1224 })
   const isTablet = useMediaQuery({ minWidth: 900, maxWidth: 1224 })
+  const isMobile = useMediaQuery({ maxWidth: 900 })
 
   return (
     <div className='container'>
@@ -434,7 +445,7 @@ const CV = () => {
                 <Col span={6}>
                   <Profile />
                   <Educations />
-                  <Educations />
+                  <Experiences />
                 </Col>
                 <Col span={18}>
                   <Projects />
@@ -451,7 +462,7 @@ const CV = () => {
                     <Experiences />
                   </TabPane>
                   <TabPane tab="💻" key="3">
-                    <Projects />
+                    <Projects {...{ isMobile }} />
                   </TabPane>
                   <TabPane tab="🔧" key="4">
                     <Skills />
